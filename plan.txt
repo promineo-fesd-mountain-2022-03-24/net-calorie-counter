@@ -1,0 +1,17 @@
+1. net calorie tracking application
+
+a. header
+ - title of our app
+ - nav bar (TODO in the future)
+a. list of containers
+  - 3 sections
+  - 1st section is going to be a list of input calories
+  - 2nd section is going to be a list of output calories
+  - 3rd section is going to hold the total or net, and the date
+  - for today, try far as we can w/ inputing dummy data
+
+
+NAVBAR
+[ | | ] <- dailyContainer
+[ | | ]
+[ | | ]
