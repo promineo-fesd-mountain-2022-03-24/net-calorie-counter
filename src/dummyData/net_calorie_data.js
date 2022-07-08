@@ -28,7 +28,7 @@ export const dataArray = [
   },
   {
     day: '6/29',
-    calroiesIn: [
+    caloriesIn: [
       {
         activity: 'snack',
         amount: 1000

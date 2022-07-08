@@ -5,6 +5,7 @@ import { dataArray } from './dummyData/net_calorie_data';
 
 function App() {
   const data = dataArray;
+  // TODO: hold this data in state, so we can update/ manipulate it
   // console.log(data);
   return (
     <div className="App">
@@ -14,7 +15,6 @@ function App() {
         <DailyContainer key={i} value={dataObj}/>
         ))
       }
-
     </div>
   );
 }
