@@ -1,6 +1,8 @@
 .container {
-  width: 1000px;
-  height: 200px;
+  width: 1600px;
+  min-height: 200px;
   border: 2px solid red;
   margin: 16px;
+  display: flex;
+  justify-content: space-between
 }
