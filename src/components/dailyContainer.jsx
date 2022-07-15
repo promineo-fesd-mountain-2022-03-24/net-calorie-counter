@@ -4,26 +4,51 @@ import { SectionContainer } from './sectionContainer';
 
 export function DailyContainer(props) {
 
-  const [netCalories, setNetCalories] = useState(0)
+  const [netCalories, setNetCalories] = useState(0);
+  const [caloriesIn, setCaloriesIn] = useState([]);
+  const [caloriesOut, setCaloriesOut] = useState([]);
 
   useEffect(() => {
+    const cIn = [];
+    const cOut = [];
+    const netC = props.value[1].reduce((acc, val) => {
+      if (val.isIn) {
+        cIn.push(val)
+        acc += val.amount
+      }
+      if (!val.isIn) {
+        cOut.push(val)
+        acc -= val.amount
+      }
+      return acc
+    }, 0);
 
-    const caloriesInTotal = props.value.caloriesIn.reduce((accumulator, currentValue) => {
-      return accumulator += currentValue.amount
-    }, 0)
-
-    const caloriesOutTotal = props.value.caloriesOut.reduce((acc, val) => {
-      return acc += val.amount
-    }, 0)
-    setNetCalories(caloriesInTotal - caloriesOutTotal);
-
-  },[netCalories, props])
+    setNetCalories(netC);
+    setCaloriesIn(cIn);
+    setCaloriesOut(cOut);
+  }, [props])
 
   return (
     <div className='container'>
-      <SectionContainer title='Calories In' data={props.value.caloriesIn} shouldAllowInput={true} />
-      <SectionContainer title='Calories Out' data={props.value.caloriesOut} shouldAllowInput={true} />
-      <SectionContainer title={`Date: ${props.value.day}`} data={[]} netCalories={`Net Calories: ${netCalories}`}/>
+      <SectionContainer
+        title='Calories In'
+        data={caloriesIn}
+        date={props.value[0]}
+        isIn={true}
+        handleFormSubmit={props.handleFormSubmit}
+      />
+      <SectionContainer
+        title='Calories Out'
+        data={caloriesOut}
+        date={props.value[0]}
+        isIn={false}
+        handleFormSubmit={props.handleFormSubmit}
+      />
+      <SectionContainer
+        title={`Date: ${props.value[0]}`}
+        data={[]}
+        netCalories={`Net Calories: ${netCalories}`}
+      />
     </div>
   )
 }
