@@ -32,11 +32,11 @@ export function SectionContainer(props) {
         }
         <div>
           {props.handleFormSubmit && (
-            <Form onSubmit={(e) => props.handleFormSubmit(e, formState, 'section')}>
+            <Form onSubmit={(e) => props.handleFormSubmit(e, formState)}>
               <Form.Control
                 type='text'
                 placeholder='Activity'
-                onChange={(e) => setFormState({...formState, [props.calorieType]: e.target.value})}
+                onChange={(e) => setFormState({...formState, activity: e.target.value})}
               />
               <Form.Control
                 type='number'
