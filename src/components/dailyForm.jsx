@@ -16,7 +16,7 @@ export function DailyForm(props) {
   }
 
   return (
-    <Form onSubmit={(e) => props.handleFormSubmit(e, formState, 'daily')}>
+    <Form onSubmit={(e) => props.handleFormSubmit(e, formState)}>
       <div style={{display: 'flex'}}>
         <Form.Check
           type='radio'

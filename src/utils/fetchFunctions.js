@@ -4,33 +4,31 @@ const mockApiUrl = 'https://62cdee67a43bf7800860cefc.mockapi.io/calories'
 // create, readAll
 // TODO: readbyId, update, delete
 
-export const getAllCalorieEntries = (setFormattedData) => {
-  fetch(mockApiUrl)
-    .then(res => res.json())
-    .then(dataArray => {
-      const innerState = {}
-      for (let data of dataArray) {
-        if (data.day in innerState) {
-          innerState[data.day].push(data)
-        } else {
-          innerState[data.day] = [data]
-        }
-      }
-      setFormattedData(innerState)
-    })
-    .catch(error => console.log(error))
+export const getAllCalorieEntries = async (setFormattedData) => {
+  const res = await fetch(mockApiUrl);
+  const dataArray = await res.json();
+  const tempFormattedData =  {}
+  for (let data of dataArray) {
+    if (data.day in tempFormattedData) {
+      tempFormattedData[data.day].push(data)
+    } else {
+      tempFormattedData[data.day] = [data]
+    }
+  }
+  setFormattedData(tempFormattedData)
 }
 
-export const createCalorieEntry = (calorieEntry, setFormattedData) => {
-  fetch(mockApiUrl, {
+export const createCalorieEntry = async (calorieEntry, setFormattedData) => {
+  const res = await fetch(mockApiUrl, {
     headers: {'Content-Type': 'application/json'},
     method: 'POST',
     body: JSON.stringify(calorieEntry)
   })
-  .then(res=> res.json())
-  .then(data => {
-    console.log(data);
+  if (res.status === 201) {
     getAllCalorieEntries(setFormattedData)
-  })
-  .catch(error => console.log(error))
+  }
+  else {
+    // handle error
+    console.log(res.statusText)
+  }
 }
