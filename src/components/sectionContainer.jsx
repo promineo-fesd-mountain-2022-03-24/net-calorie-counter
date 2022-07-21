@@ -1,5 +1,7 @@
 import Form from 'react-bootstrap/Form';
 import { useState } from 'react';
+import { Button } from 'react-bootstrap'
+import { Link } from 'react-router-dom';
 
 export function SectionContainer(props) {
 
@@ -17,10 +19,15 @@ export function SectionContainer(props) {
         {
           props.data && (
             props.data.map((row, i)=> (
-              <li key={i}>
+              <div key={i}>
               <span style={{marginRight: 16}}>Activity: {row.activity}</span>
               <span>Amount: {row.amount}</span>
-            </li>
+              <Link to={`entry/${row.id}`}>
+                <Button>
+                  <i className="bi bi-gear" />
+                </Button>
+              </Link>
+            </div>
           ))
           )
         }

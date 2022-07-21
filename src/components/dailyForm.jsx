@@ -45,7 +45,7 @@ export function DailyForm(props) {
       <Form.Control
         type='number'
         placeholder='Amount'
-        onChange={(e) => setFormState({...formState, amount: e.target.value})}
+        onChange={(e) => setFormState({...formState, amount: Number(e.target.value)})}
       />
       <Form.Control
         type='date'
