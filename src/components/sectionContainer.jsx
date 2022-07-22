@@ -1,5 +1,8 @@
 import Form from 'react-bootstrap/Form';
 import { useState } from 'react';
+import { Button } from 'react-bootstrap'
+import { Link } from 'react-router-dom';
+import './sectionContainer.css';
 
 export function SectionContainer(props) {
 
@@ -11,20 +14,25 @@ export function SectionContainer(props) {
   })
 
   return (
-    <div style={{border: '1px solid blue', width: '33%'}}>
-      <h6 style={{marginTop: '8px'}}>{props.title}</h6>
-        <ul>
+    <div className='card bg-dark' style={{ width: '33%'}}>
+      <h6 className='title'>{props.title}</h6>
+        <div>
         {
           props.data && (
             props.data.map((row, i)=> (
-              <li key={i}>
-              <span style={{marginRight: 16}}>Activity: {row.activity}</span>
-              <span>Amount: {row.amount}</span>
-            </li>
+              <div key={i}>
+              <span className='text'>Activity: {row.activity}</span>
+              <span className='text'>Amount: {row.amount}</span>
+              <Link to={`entry/${row.id}`}>
+                <Button>
+                  <i className="bi bi-gear" />
+                </Button>
+              </Link>
+            </div>
           ))
           )
         }
-        </ul>
+        </div>
         {
           props.netCalories && (
             <div>{props.netCalories}</div>
@@ -34,16 +42,18 @@ export function SectionContainer(props) {
           {props.handleFormSubmit && (
             <Form onSubmit={(e) => props.handleFormSubmit(e, formState)}>
               <Form.Control
+                className='input'
                 type='text'
                 placeholder='Activity'
                 onChange={(e) => setFormState({...formState, activity: e.target.value})}
               />
               <Form.Control
+                className='input'
                 type='number'
                 placeholder='Amount'
                 onChange={(e) => setFormState({...formState, amount: Number(e.target.value)})}
               />
-              <button type='submit'>Add</button>
+              <button className='addButton' type='submit'>Add</button>
             </Form>
           )}
         </div>
