@@ -1,9 +1,5 @@
 const mockApiUrl = 'https://62cdee67a43bf7800860cefc.mockapi.io/calories'
 
-// crud
-// create, readAll
-// TODO: readbyId, update, delete
-
 export const getAllCalorieEntries = async (setFormattedData) => {
   const res = await fetch(mockApiUrl);
   const dataArray = await res.json();
@@ -42,7 +38,7 @@ export const getCalorieEntryById = async (calorieId) => {
     // handle error
     console.log(res.statusText)
     return null;
-  } 
+  }
 }
 
 export const updateCalorieEntry = async (calorieEntry) => {

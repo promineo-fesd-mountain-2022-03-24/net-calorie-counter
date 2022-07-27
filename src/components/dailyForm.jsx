@@ -1,5 +1,6 @@
 import Form from 'react-bootstrap/Form'
 import { useState } from 'react';
+import PropTypes from 'prop-types';
 
 export function DailyForm(props) {
 
@@ -49,9 +50,13 @@ export function DailyForm(props) {
       />
       <Form.Control
         type='date'
-        onChange={(e) => setFormState({...formState, day: e.target.value})} 
+        onChange={(e) => setFormState({...formState, day: e.target.value})}
       />
       <button type='submit'>Confirm</button>
     </Form>
   )
+}
+
+DailyForm.propTypes = {
+  handleFormSubmit: PropTypes.func
 }
