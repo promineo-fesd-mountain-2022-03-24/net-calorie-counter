@@ -32,3 +32,43 @@ export const createCalorieEntry = async (calorieEntry, setFormattedData) => {
     console.log(res.statusText)
   }
 }
+
+export const getCalorieEntryById = async (calorieId) => {
+  const res = await fetch(`${mockApiUrl}/${calorieId}`);
+  if (res.status === 200) {
+    const data = await res.json();
+    return data
+  } else {
+    // handle error
+    console.log(res.statusText)
+    return null;
+  } 
+}
+
+export const updateCalorieEntry = async (calorieEntry) => {
+  const res = await fetch(`${mockApiUrl}/${calorieEntry.id}`, {
+    headers: {'Content-Type': 'application/json'},
+    method: 'PUT',
+    body: JSON.stringify(calorieEntry)
+  })
+  if (res.status === 200) {
+    return true;
+  } else {
+    // handle error
+    console.log(res.statusText)
+    return null;
+  }
+}
+
+export const deleteCalorieEntry = async (calorieId) => {
+  const res = await fetch(`${mockApiUrl}/${calorieId}`, {
+    method: 'DELETE'
+  })
+  if (res.status === 200) {
+    return true;
+  } else {
+    // handle error
+    console.log(res.statusText)
+    return null;
+  }
+}
