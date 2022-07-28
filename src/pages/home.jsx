@@ -23,7 +23,7 @@ export const HomePage = () => {
       {
         Object.entries(formattedData).map((dataObj, i) => (
           <DailyContainer key={i} value={dataObj} handleFormSubmit={handleFormSubmit}/>
-          ))
+        ))
       }
       <DailyForm
         handleFormSubmit={handleFormSubmit}

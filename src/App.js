@@ -5,7 +5,7 @@ import { HomePage } from './pages/home';
 import { EditPage } from './pages/edit';
 
 export default function App() {
-  
+
   return (
     <div className="App">
       <NavBar />
