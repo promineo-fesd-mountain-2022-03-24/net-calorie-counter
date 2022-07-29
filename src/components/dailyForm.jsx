@@ -1,5 +1,6 @@
-import Form from 'react-bootstrap/Form'
+import Form from 'react-bootstrap/Form';
 import { useState } from 'react';
+import PropTypes from 'prop-types';
 
 export function DailyForm(props) {
 
@@ -54,4 +55,8 @@ export function DailyForm(props) {
       <button type='submit'>Confirm</button>
     </Form>
   )
+}
+
+DailyForm.propTypes = {
+  handleFormSubmit: PropTypes.func
 }
