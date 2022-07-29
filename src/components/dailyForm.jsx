@@ -1,23 +1,33 @@
 import Form from 'react-bootstrap/Form';
-import { useState } from 'react';
-import PropTypes from 'prop-types';
+import { useDispatch, useSelector } from 'react-redux';
+import { resetFormState, updateActivity, updateAmount, updateDay, updateIsIn } from '../store/formSlice';
+import { useEffect } from 'react';
+
+// import PropTypes from 'prop-types';
 
 export function DailyForm(props) {
 
-  const [formState, setFormState] = useState({
-    day: '',
-    isIn: true,
-    activity: '',
-    amount: '',
-  })
+  const form = useSelector((state) => state.dayForm);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (form.isIn === null) {
+      dispatch(updateIsIn(true))
+    }
+  }, [dispatch, form.isIn])
 
   const changeRadioSelection = (e) => {
     // e.target.value is of type string 'true' | 'false'
-    setFormState({...formState, isIn: (e.target.value === 'true')})
+    dispatch(updateIsIn(e.target.value === 'true'))
+  }
+
+  const submitForm = (e) => {
+    props.handleFormSubmit(e, form);
+    dispatch(resetFormState());
   }
 
   return (
-    <Form onSubmit={(e) => props.handleFormSubmit(e, formState)}>
+    <Form onSubmit={submitForm}>
       <div style={{display: 'flex'}}>
         <Form.Check
           type='radio'
@@ -26,7 +36,7 @@ export function DailyForm(props) {
           name='inOutSelector'
           value={true}
           onChange={changeRadioSelection}
-          checked={formState.isIn === true}
+          checked={form.isIn === true}
         />
         <Form.Check
           type='radio'
@@ -35,28 +45,31 @@ export function DailyForm(props) {
           name='inOutSelector'
           value={false}
           onChange={changeRadioSelection}
-          checked={formState.isIn === false}
+          checked={form.isIn === false}
         />
       </div>
       <Form.Control
         type='text'
         placeholder='Activity'
-        onChange={(e) => setFormState({...formState, activity: e.target.value})}
+        value={form.activity ?? ''}
+        onChange={(e) => dispatch(updateActivity(e.target.value))}
       />
       <Form.Control
         type='number'
         placeholder='Amount'
-        onChange={(e) => setFormState({...formState, amount: Number(e.target.value)})}
+        value={form.amount ?? ''}
+        onChange={(e) => dispatch(updateAmount(Number(e.target.value)))}
       />
       <Form.Control
         type='date'
-        onChange={(e) => setFormState({...formState, day: e.target.value})}
+        value={form.day ?? ''}
+        onChange={(e) => dispatch(updateDay(e.target.value))}
       />
       <button type='submit'>Confirm</button>
     </Form>
   )
 }
 
-DailyForm.propTypes = {
-  handleFormSubmit: PropTypes.func
-}
+// DailyForm.propTypes = {
+//   handleFormSubmit: PropTypes.func
+// }

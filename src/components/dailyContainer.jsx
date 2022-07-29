@@ -1,7 +1,7 @@
 import './dailyContainer.css';
 import { useEffect, useState } from 'react';
 import { SectionContainer } from './sectionContainer';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
 export function DailyContainer(props) {
 
@@ -53,7 +53,7 @@ export function DailyContainer(props) {
   )
 }
 
-DailyContainer.propTypes = {
-  value: PropTypes.array,
-  handleFormSubmit: PropTypes.func
-}
+// DailyContainer.propTypes = {
+//   value: PropTypes.array,
+//   handleFormSubmit: PropTypes.func
+// }

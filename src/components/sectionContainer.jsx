@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom';
 import './sectionContainer.css';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
 export function SectionContainer(props) {
 
@@ -62,11 +62,11 @@ export function SectionContainer(props) {
   )
 }
 
-SectionContainer.propTypes = {
-  title: PropTypes.string,
-  data: PropTypes.array,
-  handleFormSubmit: PropTypes.func,
-  date: PropTypes.string,
-  isIn: PropTypes.bool,
-  netCalories: PropTypes.string
-}
+// SectionContainer.propTypes = {
+//   title: PropTypes.string,
+//   data: PropTypes.array,
+//   handleFormSubmit: PropTypes.func,
+//   date: PropTypes.string,
+//   isIn: PropTypes.bool,
+//   netCalories: PropTypes.string
+// }
