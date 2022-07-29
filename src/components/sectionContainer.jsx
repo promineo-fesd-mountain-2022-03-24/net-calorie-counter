@@ -7,7 +7,7 @@ import './sectionContainer.css';
 export function SectionContainer(props) {
 
   const [formState, setFormState] = useState({
-    day: props.date, 
+    day: props.date,
     isIn: props.isIn,
     activity: '',
     amount: '',

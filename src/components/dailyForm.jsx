@@ -49,7 +49,7 @@ export function DailyForm(props) {
       />
       <Form.Control
         type='date'
-        onChange={(e) => setFormState({...formState, day: e.target.value})} 
+        onChange={(e) => setFormState({...formState, day: e.target.value})}
       />
       <button type='submit'>Confirm</button>
     </Form>

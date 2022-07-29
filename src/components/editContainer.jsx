@@ -40,7 +40,7 @@ export function EditContainer() {
         if (res) {
           navigate('/')
         }
-      })()     
+      })();
     }
   }
 
@@ -52,7 +52,7 @@ export function EditContainer() {
         if (res) {
           navigate('/')
         }
-      })()       
+      })();
     }
   }
 
